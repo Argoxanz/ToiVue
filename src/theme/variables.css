@@ -1,25 +1,77 @@
 :root {
-  --ion-color-primary: #3880ff;
-  --ion-color-primary-rgb: 56, 128, 255;
+  /* Minimal theme with caramel accent */
+  --ion-color-primary: #d67d3e; /* caramel */
+  --ion-color-primary-rgb: 214, 125, 62;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;
-  --ion-color-primary-shade: #3171e0;
-  --ion-color-primary-tint: #4c8dff;
+  --ion-color-primary-shade: #be6e37;
+  --ion-color-primary-tint: #dd8d55;
 
-  --ion-color-secondary: #5260ff;
-  --ion-color-tertiary: #2dd36f;
-  --ion-color-success: #2dd36f;
-  --ion-color-warning: #ffc409;
-  --ion-color-danger: #eb445a;
-  --ion-color-medium: #92949c;
-  --ion-color-light: #f4f5f8;
+  --ion-color-secondary: #6b7280; /* neutral gray */
+  --ion-color-secondary-rgb: 107, 114, 128;
+  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-contrast-rgb: 255, 255, 255;
+  --ion-color-secondary-shade: #5e6471;
+  --ion-color-secondary-tint: #7c8290;
+
+  --ion-color-tertiary: #111827; /* near-black for accents */
+  --ion-color-tertiary-rgb: 17, 24, 39;
+  --ion-color-tertiary-contrast: #ffffff;
+  --ion-color-tertiary-contrast-rgb: 255, 255, 255;
+  --ion-color-tertiary-shade: #0f1522;
+  --ion-color-tertiary-tint: #2a3342;
+
+  --ion-color-success: #16a34a;
+  --ion-color-warning: #f59e0b;
+  --ion-color-danger: #dc2626;
+  --ion-color-medium: #9ca3af;
+  --ion-color-light: #f3f4f6; /* light surface */
+
+  /* Surfaces & typography */
+  --ion-background-color: #ffffff;
+  --ion-text-color: #111827;
+  --ion-font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, 'Apple Color Emoji', 'Segoe UI Emoji';
+
+  /* Components */
+  --ion-toolbar-background: #ffffff;
+  --ion-toolbar-color: #111827;
+  --ion-card-background: #ffffff;
+  --ion-card-border-radius: 12px;
+  --ion-item-background: #ffffff;
 }
 
-@media (prefers-color-scheme: dark) {
+/* Ensure IonDatetime (calendar) has visible text/colors */
+ion-datetime {
+  --background: var(--ion-background-color);
+  --color: var(--ion-text-color);
+  --ion-text-color: var(--ion-text-color);
+  /* Define color step scale used internally by calendar for days/labels */
+  --ion-color-step-50: #f9fafb;
+  --ion-color-step-100: #f3f4f6;
+  --ion-color-step-150: #e5e7eb;
+  --ion-color-step-200: #e5e7eb;
+  --ion-color-step-250: #d1d5db;
+  --ion-color-step-300: #d1d5db;
+  --ion-color-step-350: #9ca3af;
+  --ion-color-step-400: #9ca3af;
+  --ion-color-step-450: #6b7280;
+  --ion-color-step-500: #6b7280;
+  --ion-color-step-550: #4b5563;
+  --ion-color-step-600: #4b5563;
+  --ion-color-step-650: #374151;
+  --ion-color-step-700: #374151;
+  --ion-color-step-750: #1f2937;
+  --ion-color-step-800: #1f2937;
+  --ion-color-step-850: #111827;
+  --ion-color-step-900: #111827;
+}
+
+/* @media (prefers-color-scheme: dark) {
   :root {
     --ion-background-color: #0b0b0c;
-    --ion-text-color: #ffffff;
+    --ion-text-color: #f9fafb;
+    --ion-card-background: #16181d;
+    --ion-toolbar-background: #0b0b0c;
+    --ion-toolbar-color: #f9fafb;
   }
-}
-
-
+} */

@@ -2,6 +2,9 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import { IonicVue } from '@ionic/vue'
+import { createPinia } from 'pinia'
+import VueApexCharts from 'vue3-apexcharts'
+import { useAuth } from './store/auth'
 
 // Ionic core and basic CSS
 import '@ionic/vue/css/core.css'
@@ -22,8 +25,12 @@ import './theme/variables.css'
 
 const app = createApp(App)
 app.use(IonicVue)
+app.use(createPinia())
+app.use(VueApexCharts)
 app.use(router)
 
-router.isReady().then(() => {
+router.isReady().then(async () => {
+  const { loadUserIfAuthenticated } = useAuth()
+  await loadUserIfAuthenticated()
   app.mount('#app')
 })
