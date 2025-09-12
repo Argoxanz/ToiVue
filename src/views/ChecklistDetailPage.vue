@@ -177,7 +177,7 @@ async function clearAssignee(taskId: number) {
               <strong>Deadline</strong>
               <IonItem>
                 <IonLabel position="stacked">Due date</IonLabel>
-                <IonInput :value="toDateOnly(selectedTask.due_at)" type="date" @ionChange="(e:any)=>updateTask(checklistId, selectedTask.id, { due_at: e.detail.value || null })" />
+                <IonInput :value="toDateOnly(selectedTask?.due_at)" type="date" @ionChange="(e:any)=>selectedTask && updateTask(checklistId, selectedTask.id, { due_at: e.detail.value || null })" />
               </IonItem>
             </div>
 
@@ -194,13 +194,13 @@ async function clearAssignee(taskId: number) {
               <strong>Subtasks ({{ progressLabel(selectedTask) }})</strong>
               <IonList class="subtasks">
                 <IonItem v-for="s in selectedTask.subtasks" :key="s.id">
-                  <IonCheckbox :checked="s.is_completed" slot="start" @ion-change="(e:any)=>onToggleSubtask(selectedTask.id, s.id, !!e.detail.checked)" />
-                  <IonInput :value="s.title" @ionBlur="(e:any)=>onRenameSubtask(selectedTask.id, s.id, e.target.value)" />
+                  <IonCheckbox :checked="s.is_completed" slot="start" @ion-change="(e:any)=>selectedTask && onToggleSubtask(selectedTask.id, s.id, !!e.detail.checked)" />
+                  <IonInput :value="s.title" @ionBlur="(e:any)=>selectedTask && onRenameSubtask(selectedTask.id, s.id, e.target.value)" />
                   <IonButton color="danger" @click="onDeleteSubtask(selectedTask.id, s.id)">Remove</IonButton>
                 </IonItem>
                 <IonItem>
-                  <IonInput v-model="newSubtaskTitle" placeholder="New subtask" @keyup.enter="async ()=>{ await onAddSubtask(selectedTask.id, newSubtaskTitle); newSubtaskTitle='' }" />
-                  <IonButton @click="async ()=>{ await onAddSubtask(selectedTask.id, newSubtaskTitle); newSubtaskTitle='' }" :disabled="!newSubtaskTitle">Add</IonButton>
+                  <IonInput v-model="newSubtaskTitle" placeholder="New subtask" @keyup.enter="async ()=>{ selectedTask && await onAddSubtask(selectedTask.id, newSubtaskTitle); newSubtaskTitle='' }" />
+                  <IonButton @click="async ()=>{ selectedTask && await onAddSubtask(selectedTask.id, newSubtaskTitle); newSubtaskTitle='' }" :disabled="!newSubtaskTitle">Add</IonButton>
                 </IonItem>
               </IonList>
             </div>

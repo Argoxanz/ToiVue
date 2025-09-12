@@ -80,7 +80,7 @@
           </template>
         </ion-list>
 
-        <edit-budget-modal ref="editBudgetRef" :budget-id="budgetId" :initial="{ name: summary.budget.name ?? null, total_amount: summary.budget.total }" @saved="refreshAll" />
+        <edit-budget-modal ref="editBudgetRef" :budget-id="budgetId" :initial="{ name: null, total_amount: summary.budget.total }" @saved="refreshAll" />
         <add-category-modal ref="addCategoryRef" :budget-id="budgetId" @created="refreshAll" />
         <edit-category-modal ref="editCategoryRef" :budget-id="budgetId" :category-id="editingCategoryId" @saved="refreshAll" />
         <add-expense-modal ref="addExpenseRef" :budget-id="budgetId" :category-id="addingCategoryId" @created="onExpenseCreated" />
