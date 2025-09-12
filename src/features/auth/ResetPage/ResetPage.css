@@ -1,0 +1,39 @@
+/* ResetPage specific styles */
+.reset-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reset-card {
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.reset-form {
+  padding: 1rem 0;
+}
+
+.reset-button {
+  margin-top: 1rem;
+}
+
+.message-display {
+  margin-top: 1rem;
+  text-align: center;
+  padding: 1rem;
+  background-color: var(--ion-color-light);
+  border-radius: 8px;
+}
+
+.password-field {
+  margin-bottom: 1rem;
+}
+
+.confirm-password-field {
+  margin-bottom: 1rem;
+}
+
+

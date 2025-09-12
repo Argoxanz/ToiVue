@@ -1,10 +1,21 @@
 <script setup lang="ts">
 import { IonApp, IonRouterOutlet, IonTabs, IonTabBar, IonTabButton, IonLabel, IonIcon } from '@ionic/vue'
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, computed } from 'vue'
+import { useRoute } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import { healthCheck } from './api/health'
 import { personOutline, walletOutline, listOutline } from 'ionicons/icons'
 
+const { t: $t } = useI18n()
+
 const healthy = ref(true)
+const route = useRoute()
+
+const showTabs = computed(() => {
+  // Show tabs only for authenticated routes
+  return route.meta.requiresAuth === true
+})
+
 onMounted(async () => {
   try {
     const res = await healthCheck()
@@ -19,18 +30,18 @@ onMounted(async () => {
   <IonApp>
     <IonTabs>
       <IonRouterOutlet />
-      <IonTabBar slot="bottom">
+      <IonTabBar v-if="showTabs" slot="bottom">
         <IonTabButton tab="profile" href="/profile" aria-label="Profile">
           <IonIcon :icon="personOutline" />
-          <IonLabel>Profile</IonLabel>
+          <IonLabel>{{ $t('common.profile') }}</IonLabel>
         </IonTabButton>
         <IonTabButton tab="budget" href="/budget" aria-label="Budget">
           <IonIcon :icon="walletOutline" />
-          <IonLabel>Budget</IonLabel>
+          <IonLabel>{{ $t('common.budget') }}</IonLabel>
         </IonTabButton>
         <IonTabButton tab="checklists" href="/checklists" aria-label="Checklists">
           <IonIcon :icon="listOutline" />
-          <IonLabel>Checklists</IonLabel>
+          <IonLabel>{{ $t('checklists.title') }}</IonLabel>
         </IonTabButton>
       </IonTabBar>
     </IonTabs>

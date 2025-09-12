@@ -1,0 +1,7 @@
+/* ChecklistsPage specific styles */
+.stack-md { 
+  display: grid; 
+  gap: 12px; 
+}
+
+

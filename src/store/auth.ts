@@ -1,91 +1,88 @@
-import { reactive, toRefs } from 'vue'
+import { defineStore } from 'pinia'
+import { ref, computed } from 'vue'
 import { authApi, type User } from '../api/auth'
 import { tokenStorage } from '../api/http'
 
-type AuthState = {
-  user: User | null
-  loading: boolean
-  error: string | null
-}
+export const useAuthStore = defineStore('auth', () => {
+  // State
+  const user = ref<User | null>(null)
+  const loading = ref(false)
+  const error = ref<string | null>(null)
 
-const state = reactive<AuthState>({
-  user: null,
-  loading: false,
-  error: null,
-})
+  // Getters
+  const isAuthenticated = computed(() => !!user.value)
+  const userRole = computed(() => user.value?.role || null)
 
-export function useAuth() {
+  // Actions
   async function loadUserIfAuthenticated() {
     const { accessToken } = tokenStorage.get()
     if (!accessToken) {
-      state.user = null
+      user.value = null
       return
     }
-    console.log(1);
-// state.loading = true
-    state.error = null
+    
+    error.value = null
     try {
-      state.user = await authApi.me()
-    } catch (e) {
-      state.user = null
+      user.value = await authApi.me()
+    } catch {
+      user.value = null
     } finally {
-      state.loading = false
+      loading.value = false
     }
   }
 
   async function login(login: string, password: string) {
-    console.log(2);
-state.loading = true
-    state.error = null
+    loading.value = true
+    error.value = null
     try {
       await authApi.login({ login, password })
-      state.user = await authApi.me()
-    } catch (e: any) {
-      state.error = e?.response?.data?.message ?? 'Login failed'
+      user.value = await authApi.me()
+    } catch (e: unknown) {
+      const errorResponse = e as { response?: { data?: { message?: string } } }
+      error.value = errorResponse?.response?.data?.message ?? 'Login failed'
       throw e
     } finally {
-      state.loading = false
+      loading.value = false
     }
   }
 
   async function register(name: string, emailOrPhone: { email?: string; phone?: string }, password: string) {
-    console.log(3);
-state.loading = true
-    state.error = null
+    loading.value = true
+    error.value = null
     try {
       await authApi.register({ name, ...emailOrPhone, password })
-      state.user = await authApi.me()
-    } catch (e: any) {
-      state.error = e?.response?.data?.message ?? 'Registration failed'
+      user.value = await authApi.me()
+    } catch (e: unknown) {
+      const errorResponse = e as { response?: { data?: { message?: string } } }
+      error.value = errorResponse?.response?.data?.message ?? 'Registration failed'
       throw e
     } finally {
-      state.loading = false
+      loading.value = false
     }
   }
 
   async function logout() {
-    console.log(4);
-state.loading = true
+    loading.value = true
     try {
       await authApi.logout()
     } finally {
-      state.user = null
-      state.loading = false
+      user.value = null
+      loading.value = false
     }
   }
 
   async function googleLogin(idToken: string) {
-    console.log(5);
-state.loading = true
-    state.error = null
+    loading.value = true
+    error.value = null
     try {
       await authApi.google({ id_token: idToken })
-      state.user = await authApi.me()
-    } catch (e: any) {
-      state.error = e?.response?.data?.message ?? 'Google sign-in failed'
+      user.value = await authApi.me()
+    } catch (e: unknown) {
+      const errorResponse = e as { response?: { data?: { message?: string } } }
+      error.value = errorResponse?.response?.data?.message ?? 'Google sign-in failed'
       throw e
     } finally {
-      state.loading = false
+      loading.value = false
     }
   }
 
@@ -97,8 +94,19 @@ state.loading = true
     return authApi.reset(payload)
   }
 
+  function clearError() {
+    error.value = null
+  }
+
   return {
-    ...toRefs(state),
+    // State
+    user,
+    loading,
+    error,
+    // Getters
+    isAuthenticated,
+    userRole,
+    // Actions
     loadUserIfAuthenticated,
     login,
     register,
@@ -106,6 +114,24 @@ state.loading = true
     googleLogin,
     forgot,
     reset,
+    clearError,
+  }
+})
+
+// Legacy compatibility - remove after updating all imports
+export function useAuth() {
+  const store = useAuthStore()
+  return {
+    user: store.user,
+    loading: store.loading,
+    error: store.error,
+    loadUserIfAuthenticated: store.loadUserIfAuthenticated,
+    login: store.login,
+    register: store.register,
+    logout: store.logout,
+    googleLogin: store.googleLogin,
+    forgot: store.forgot,
+    reset: store.reset,
   }
 }
 

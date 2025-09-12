@@ -113,7 +113,7 @@ http.interceptors.response.use(
           if (router.currentRoute.value.path !== '/login') {
             router.replace({ path: '/login' })
           }
-        } catch (_) {
+        } catch {
           // ignore navigation errors
         }
         return Promise.reject(refreshError)

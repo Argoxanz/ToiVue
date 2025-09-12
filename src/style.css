@@ -22,3 +22,30 @@ body {
 .stack-sm > * + * { margin-top: 8px; }
 .stack-md > * + * { margin-top: 12px; }
 .stack-lg > * + * { margin-top: 16px; }
+
+/* Header styling - remove shadow and add grey line */
+ion-header {
+  box-shadow: none !important;
+  --box-shadow: none !important;
+}
+
+ion-toolbar {
+  box-shadow: none !important;
+  --box-shadow: none !important;
+  border-bottom: 1px solid #e5e7eb !important;
+}
+
+ion-toolbar::after {
+  display: none !important;
+}
+
+/* Center page titles */
+ion-title {
+  text-align: center !important;
+  --text-align: center !important;
+}
+
+ion-toolbar ion-title {
+  text-align: center !important;
+  --text-align: center !important;
+}

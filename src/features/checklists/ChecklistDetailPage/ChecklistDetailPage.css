@@ -1,0 +1,17 @@
+/* ChecklistDetailPage specific styles */
+.stack-md { 
+  display: grid; 
+  gap: 12px; 
+}
+
+.task { 
+  margin-bottom: 16px; 
+  border: 1px solid var(--ion-color-step-150); 
+  border-radius: 8px; 
+}
+
+.subtasks { 
+  padding-left: 12px; 
+}
+
+

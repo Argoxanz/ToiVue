@@ -3,20 +3,72 @@ import type { RouteRecordRaw } from 'vue-router'
 
 const routes: Array<RouteRecordRaw> = [
   { path: '/', redirect: '/profile' },
-  { path: '/login', component: () => import('../views/LoginPage.vue') },
-  { path: '/register', component: () => import('../views/RegisterPage.vue') },
-  { path: '/forgot', component: () => import('../views/ForgotPage.vue') },
-  { path: '/reset', component: () => import('../views/ResetPage.vue') },
-  { path: '/profile', component: () => import('../views/ProfilePage.vue'), meta: { requiresAuth: true } },
-  { path: '/budget', component: () => import('../views/BudgetEntry.vue'), meta: { requiresAuth: true } },
-  { path: '/checklists', component: () => import('../views/ChecklistsPage.vue'), meta: { requiresAuth: true } },
-  { path: '/checklists/:id', component: () => import('../views/ChecklistDetailPage.vue'), meta: { requiresAuth: true } },
+  { 
+    path: '/login', 
+    component: () => import('@/features/auth/LoginPage'),
+    meta: { title: 'Login' }
+  },
+  { 
+    path: '/register', 
+    component: () => import('@/features/auth/RegisterPage'),
+    meta: { title: 'Register' }
+  },
+  { 
+    path: '/forgot', 
+    component: () => import('@/features/auth/ForgotPage'),
+    meta: { title: 'Forgot Password' }
+  },
+  { 
+    path: '/reset', 
+    component: () => import('@/features/auth/ResetPage'),
+    meta: { title: 'Reset Password' }
+  },
+  { 
+    path: '/profile', 
+    component: () => import('@/features/profile/ProfilePage'), 
+    meta: { requiresAuth: true, title: 'Profile' }
+  },
+  { 
+    path: '/budget', 
+    component: () => import('@/features/budget/BudgetEntry'), 
+    meta: { requiresAuth: true, title: 'Budget Entry' }
+  },
+  { 
+    path: '/checklists', 
+    component: () => import('@/features/checklists/ChecklistsPage'), 
+    meta: { requiresAuth: true, title: 'Checklists' }
+  },
+  { 
+    path: '/checklists/:id', 
+    component: () => import('@/features/checklists/ChecklistDetailPage'), 
+    meta: { requiresAuth: true, title: 'Checklist Details' }
+  },
   // Budgets
-  { path: '/budgets/:id', component: () => import('../views/BudgetDashboard.vue'), meta: { requiresAuth: true } },
-  { path: '/budgets/:id/categories/:categoryId', component: () => import('../views/CategoryDetail.vue'), meta: { requiresAuth: true } },
-  { path: '/budgets/:id/expenses/:expenseId', component: () => import('../views/ExpenseDetail.vue'), meta: { requiresAuth: true } },
-  { path: '/settings', component: () => import('../views/SettingsPage.vue'), meta: { requiresAuth: true } },
-  { path: '/export', component: () => import('../views/ExportPage.vue'), meta: { requiresAuth: true } },
+  { 
+    path: '/budgets/:id', 
+    component: () => import('@/features/budget/BudgetDashboard'), 
+    meta: { requiresAuth: true, title: 'Budget Dashboard' }
+  },
+  { 
+    path: '/budgets/:id/categories/:categoryId', 
+    component: () => import('@/features/budget/CategoryDetail'), 
+    meta: { requiresAuth: true, title: 'Category Details' }
+  },
+  { 
+    path: '/budgets/:id/expenses/:expenseId', 
+    component: () => import('@/features/budget/ExpenseDetail'), 
+    meta: { requiresAuth: true, title: 'Expense Details' }
+  },
+  { 
+    path: '/settings', 
+    component: () => import('@/features/settings/SettingsPage'), 
+    meta: { requiresAuth: true, title: 'Settings' }
+  },
+  { 
+    path: '/export', 
+    component: () => import('@/features/export/ExportPage'), 
+    meta: { requiresAuth: true, title: 'Export Data' }
+  },
 ]
 
 const router = createRouter({

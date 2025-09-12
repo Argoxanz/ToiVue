@@ -23,8 +23,9 @@ export function useChecklists() {
     state.error = null
     try {
       state.templates = await checklistsApi.getTemplates()
-    } catch (e: any) {
-      state.error = e?.response?.data?.message ?? 'Failed to load templates'
+    } catch (e: unknown) {
+      const errorResponse = e as { response?: { data?: { message?: string } } }
+      state.error = errorResponse?.response?.data?.message ?? 'Failed to load templates'
     } finally {
       state.loading = false
     }
@@ -35,8 +36,9 @@ export function useChecklists() {
     state.error = null
     try {
       state.list = await checklistsApi.list(page)
-    } catch (e: any) {
-      state.error = e?.response?.data?.message ?? 'Failed to load checklists'
+    } catch (e: unknown) {
+      const errorResponse = e as { response?: { data?: { message?: string } } }
+      state.error = errorResponse?.response?.data?.message ?? 'Failed to load checklists'
     } finally {
       state.loading = false
     }
@@ -53,8 +55,9 @@ export function useChecklists() {
         state.list.total += 1
       }
       return created
-    } catch (e: any) {
-      state.error = e?.response?.data?.message ?? 'Failed to create checklist'
+    } catch (e: unknown) {
+      const errorResponse = e as { response?: { data?: { message?: string } } }
+      state.error = errorResponse?.response?.data?.message ?? 'Failed to create checklist'
       throw e
     } finally {
       state.loading = false
@@ -66,8 +69,9 @@ export function useChecklists() {
     state.error = null
     try {
       state.current = await checklistsApi.get(id)
-    } catch (e: any) {
-      state.error = e?.response?.data?.message ?? 'Failed to load checklist'
+    } catch (e: unknown) {
+      const errorResponse = e as { response?: { data?: { message?: string } } }
+      state.error = errorResponse?.response?.data?.message ?? 'Failed to load checklist'
     } finally {
       state.loading = false
     }
@@ -85,8 +89,9 @@ export function useChecklists() {
         const idx = state.list.data.findIndex((c) => c.id === id)
         if (idx !== -1) state.list.data[idx] = { ...state.list.data[idx], ...updated }
       }
-    } catch (e: any) {
-      state.error = e?.response?.data?.message ?? 'Failed to update checklist'
+    } catch (e: unknown) {
+      const errorResponse = e as { response?: { data?: { message?: string } } }
+      state.error = errorResponse?.response?.data?.message ?? 'Failed to update checklist'
       throw e
     } finally {
       state.loading = false
@@ -103,8 +108,9 @@ export function useChecklists() {
         state.list.total = Math.max(0, state.list.total - 1)
       }
       if (state.current?.id === id) state.current = null
-    } catch (e: any) {
-      state.error = e?.response?.data?.message ?? 'Failed to delete checklist'
+    } catch (e: unknown) {
+      const errorResponse = e as { response?: { data?: { message?: string } } }
+      state.error = errorResponse?.response?.data?.message ?? 'Failed to delete checklist'
       throw e
     } finally {
       state.loading = false

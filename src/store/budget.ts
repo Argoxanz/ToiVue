@@ -50,8 +50,9 @@ export function useBudget() {
         per_page: result.per_page,
         total: result.total,
       }
-    } catch (e: any) {
-      state.error = e?.response?.data?.message ?? 'Failed to load budgets'
+    } catch (e: unknown) {
+      const errorResponse = e as { response?: { data?: { message?: string } } }
+      state.error = errorResponse?.response?.data?.message ?? 'Failed to load budgets'
     } finally {
       state.loading = false
     }
@@ -84,8 +85,9 @@ export function useBudget() {
         state.expensesByBudget.set(id, map)
       }
       map.set(1, { page: 1, data: paginated, fetchedAt: Date.now() })
-    } catch (e: any) {
-      state.error = e?.response?.data?.message ?? 'Failed to load budget'
+    } catch (e: unknown) {
+      const errorResponse = e as { response?: { data?: { message?: string } } }
+      state.error = errorResponse?.response?.data?.message ?? 'Failed to load budget'
     } finally {
       state.loading = false
     }

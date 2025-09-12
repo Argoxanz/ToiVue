@@ -1,0 +1,45 @@
+/* RegisterPage specific styles */
+.register-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.register-card {
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.register-form {
+  padding: 1rem 0;
+}
+
+.register-button {
+  margin-top: 1rem;
+}
+
+.google-signin-container {
+  margin: 1rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+.auth-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.error-message {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.form-field {
+  margin-bottom: 1rem;
+}
+
+

@@ -1,0 +1,375 @@
+/* Modern Login Page Styles */
+.login-page {
+  min-height: 100vh;
+  background: var(--ion-color-light);
+  position: relative;
+  overflow: hidden;
+}
+
+.login-content {
+  --background: transparent;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.login-content .scroll-y {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+/* Compact Language switcher */
+.compact-language-switcher {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
+  background: var(--ion-background-color);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--ion-color-step-200);
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 60px;
+  justify-content: center;
+}
+
+.compact-language-switcher:hover {
+  background: var(--ion-color-step-50);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.language-code {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--ion-color-step-700);
+  text-transform: uppercase;
+}
+
+.dropdown-icon {
+  font-size: 0.8rem;
+  color: var(--ion-color-medium);
+  transition: transform 0.2s ease;
+}
+
+.compact-language-switcher:hover .dropdown-icon {
+  transform: translateY(1px);
+}
+
+/* Language popover styles */
+.compact-language-switcher ion-item.selected {
+  --background: var(--ion-color-primary-tint);
+  --color: var(--ion-color-primary-contrast);
+}
+
+
+/* Login container */
+.login-container {
+  width: 100%;
+  max-width: 420px;
+  z-index: 1;
+  position: relative;
+  margin: 0 auto;
+}
+
+/* Brand section */
+.brand-section {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.logo-icon {
+  font-size: 2.5rem;
+  background: var(--ion-color-primary);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  border: 2px solid var(--ion-color-primary-tint);
+}
+
+.brand-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--ion-color-primary);
+  margin: 0;
+}
+
+.brand-subtitle {
+  color: var(--ion-color-step-600);
+  font-size: 1.1rem;
+  margin: 0;
+  font-weight: 300;
+}
+
+/* Login card */
+.login-card {
+  background: var(--ion-background-color);
+  border-radius: 16px;
+  border: 1px solid var(--ion-color-step-200);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin: 0;
+  overflow: hidden;
+}
+
+.login-form-content {
+  padding: 2rem !important;
+}
+
+/* Form styles */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* Reduced gap between form elements */
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 8px;
+}
+
+.form-item {
+  margin-bottom: 12px;
+  --padding-start: 12px;
+  --padding-end: 12px;
+  --padding-top: 8px;
+  --padding-bottom: 8px;
+  --min-height: 48px;
+}
+
+.form-item:hover {
+  --border-color: var(--ion-color-primary);
+}
+
+.form-item.ion-invalid {
+  --border-color: var(--ion-color-danger);
+}
+
+
+.password-toggle {
+  color: var(--ion-color-medium);
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.password-toggle:hover {
+  color: var(--ion-color-step-700);
+}
+
+.error-text {
+  font-size: 0.8rem;
+  margin-top: 4px;
+  padding-left: 4px;
+}
+
+/* Login button */
+.login-button {
+  --border-radius: 12px;
+  --padding-top: 16px;
+  --padding-bottom: 16px;
+  --font-weight: 600;
+  --font-size: 1rem;
+  margin-top: 0.5rem;
+  height: 52px;
+  transition: all 0.3s ease;
+}
+
+.login-button:hover:not([disabled]) {
+  transform: translateY(-1px);
+}
+
+/* Divider */
+.divider {
+  position: relative;
+  text-align: center;
+  margin: 1.5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.divider::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--ion-color-step-200), transparent);
+}
+
+.divider-text {
+  background: var(--ion-background-color);
+  padding: 0 16px;
+  color: var(--ion-color-medium);
+  font-size: 0.9rem;
+  font-weight: 500;
+  position: relative;
+  z-index: 1;
+}
+
+/* Google sign in */
+.google-signin-container {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+/* Error message */
+.error-message {
+  background: rgba(220, 38, 38, 0.1);
+  border: 1px solid rgba(220, 38, 38, 0.2);
+  border-radius: 12px;
+  padding: 12px 16px;
+  text-align: center;
+  font-size: 0.9rem;
+  margin: 1rem 0;
+}
+
+/* Auth links */
+.auth-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 1.5rem;
+}
+
+.auth-link {
+  --color: var(--ion-color-medium);
+  --color-hover: var(--ion-color-step-700);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.auth-link:hover {
+  --color: var(--ion-color-step-700);
+}
+
+/* Custom input row styles */
+.custom-input-row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  min-height: 48px; /* Reduced height to match smaller form items */
+}
+
+.custom-input-row.space-between {
+  justify-content: space-between;
+}
+
+.input-content {
+  padding-left: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+}
+
+.input-label {
+  font-size: 12px !important;
+  margin-bottom: -10px;
+  z-index: 100;
+}
+
+.input-field {
+  height: 5px;
+  z-index: 50;
+}
+
+/* IonInput specific styling */
+.form-item ion-input {
+  --padding-top: 4px;
+  --padding-bottom: 4px;
+  --padding-start: 0;
+  --padding-end: 0;
+  font-size: 16px;
+}
+
+.input-icon {
+  color: var(--ion-color-medium);
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 24px;
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+  .login-content {
+    padding: 16px;
+  }
+  
+  .login-form-content {
+    padding: 1.5rem !important;
+  }
+  
+  .brand-title {
+    font-size: 2rem;
+  }
+  
+  .logo-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 2rem;
+  }
+  
+  .compact-language-switcher {
+    top: 16px;
+    right: 16px;
+    padding: 6px 10px;
+    min-width: 50px;
+  }
+  
+  .language-code {
+    font-size: 0.8rem;
+  }
+  
+  .dropdown-icon {
+    font-size: 0.7rem;
+  }
+  
+  .circle-1 {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .circle-2 {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .circle-3 {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+
+
